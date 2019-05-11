@@ -6,12 +6,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 /**
- * @PropertySource 어노테이션은 프로퍼티 소스의 위치를 알려준다. Config 클래스는 해당 파일에서 프로퍼티를 읽어들인다.
- * @Value 어노테이션을 통해서 프로퍼티 키에 대한 값을 변수에 할당하게 된다.
+ * 이 Config 클래스는 아래와 같이 두개의 properties 파일을 정의하였다. 만약에 이 두개의 파일이 동일한 키에 대해 서로 다른 값을 정의하였다면
+ * 뒤에 등록된 properties 파일이 앞에 값을 override한다.
  */
 @Configuration
-@PropertySource({ "classpath:property-source-ex.properties" })
-public class PropertySourceApplicationConfig {
+@PropertySource({ "classpath:property-source-ex.properties", "classpath:property-source-ex-override.properties" })
+public class PropertySourceApplicationOverrideConfig {
     @Value("${readfile-name}")
     private String readFileName;
     @Value("${writefile-name}")
